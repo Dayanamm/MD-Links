@@ -1,22 +1,32 @@
-//const { rejects } = require("assert");
 const fs = require("fs");
-//const { resolve } = require("path");
-const md = require("markdown-it")({
-  html: true,
-  linkify: true,
-});
+const marked = require("marked");
+const path = require("path");
+const { rejects } = require("assert");
+const { resolve } = require("path");
 
-//Leer archivo.md
+const ruoteRelative = (route) => path.resolve(route);
 
-fs.readFile("TEXT.md", { encoding: "utf8" }, readFiles);
-function readFiles(error, data) {
-  if (error) {
-    console.log("Error: ", error);
-  } else {
-    //console.log("Datos leidos: ", data);
-    let result = md.renderInline(data);
-    console.log(result);
-  }
+function init(path) {
+  return new Promise((resolve, rejects) => {
+    const markdown = fs.readFileSync(path).toString();
+    const arrayLinks = [];
+    let render = new marked.Renderer();
+    render.link = function (href, title, text) {
+      let link = {
+        href: href,
+        text: text,
+        file: "",
+      };
+      arrayLinks.push(link);
+      console.log("Funciono: ", arrayLinks);
+    };
+    marked(markdown, {
+      renderer: render,
+    });
+    resolve(arrayLinks);
+  });
 }
 
-//Extraer links de archivos.md
+init("TEXT.md")
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error));
