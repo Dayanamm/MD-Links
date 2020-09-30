@@ -45,9 +45,10 @@ function initDir(route) {
         return filesMd;
       }
     });
-    console.log(filesMd);
+    resolve(filesMd);
   });
 }
+
 initDir("C:/Users/drada/Documents/MD-Links/markdown/")
   .then((result) => console.log(result))
   .catch((error) => console.log(error));
