@@ -3,6 +3,7 @@ const marked = require("marked");
 const path = require("path");
 const { rejects } = require("assert");
 const { resolve } = require("path");
+const { Console } = require("console");
 
 const route = path.resolve();
 
@@ -15,7 +16,7 @@ function initFile(route) {
       let link = {
         href: href,
         text: text,
-        file: route,
+        file: path.resolve(route),
       };
       arrayLinks.push(link);
     };
@@ -32,9 +33,12 @@ initFile("text.md")
 
 //Leer directorios:
 
-function initDir(route) {
-  return new Promise((resolve, rejects) => {
-    const filesMd = [];
+function init(route) {
+  const filesMd = [];
+  if (path.extname(route) === ".md") {
+    filesMd.push(route);
+    return filesMd;
+  } else {
     const markdown = fs.readdirSync(route).toString();
     const arrayFiles = [markdown];
     const filesDirectory = arrayFiles.toString();
@@ -42,13 +46,8 @@ function initDir(route) {
     const extension = divideFiles.map((archives) => {
       if (path.extname(archives) === ".md") {
         filesMd.push(archives);
-        return filesMd;
       }
     });
-    resolve(filesMd);
-  });
+    return filesMd;
+  }
 }
-
-initDir("C:/Users/drada/Documents/MD-Links/markdown/")
-  .then((result) => console.log(result))
-  .catch((error) => console.log(error));
