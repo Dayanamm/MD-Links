@@ -8,11 +8,12 @@ const { Console } = require("console");
 const { validateLinks } = require("./options");
 const { statsLink } = require("./statsLink");
 const { optionStatsValidate } = require("./optionStatsValidate");
+const { initDir, initFile } = require("./route");
 const route = path.resolve();
 
 function mdLinks(route, options) {
   return new Promise((resolve, reject) => {
-    const filesDirectory = directoryOrFile(route);
+    const filesDirectory = initDir(route);
     let variables = filesDirectory.map((elem) => {
       if (options.validate && !options.stats) {
         return validateLinks(elem);
@@ -21,7 +22,7 @@ function mdLinks(route, options) {
       } else if (options.validate && options.stats) {
         return optionStatsValidate(elem);
       } else if (options) {
-        return getLinks(elem);
+        return initFile(elem);
       }
     });
 
