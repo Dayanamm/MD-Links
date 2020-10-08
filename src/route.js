@@ -1,10 +1,6 @@
 const fs = require("fs");
 const marked = require("marked");
 const path = require("path");
-const { rejects } = require("assert");
-const { resolve } = require("path");
-const { Console } = require("console");
-
 const route = path.resolve();
 
 function initFile(route) {
@@ -27,13 +23,7 @@ function initFile(route) {
   });
 }
 
-initFile("text.md")
-  .then((result) => console.log(result))
-  .catch((error) => console.log(error));
-
-//Leer directorios:
-
-function init(route) {
+function initDir(route) {
   const filesMd = [];
   if (path.extname(route) === ".md") {
     filesMd.push(route);
@@ -51,3 +41,6 @@ function init(route) {
     return filesMd;
   }
 }
+
+exports.initFile = initFile;
+exports.initDir = initDir;
