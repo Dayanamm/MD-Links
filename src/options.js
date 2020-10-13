@@ -1,6 +1,8 @@
 const fetch = require("node-fetch");
-const { initFile } = require("./route");
-const { validateLinks } = require("./options");
+const { rejects } = require("assert");
+const { resolve } = require("path");
+const { Console } = require("console");
+const { initFile } = require("./src/route");
 
 function validateLinks(route) {
   return new Promise(function (resolve, reject) {

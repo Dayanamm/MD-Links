@@ -1,15 +1,7 @@
-const fs = require("fs");
-const marked = require("marked");
-const path = require("path");
-const fetch = require("node-fetch");
-const { rejects } = require("assert");
-const { resolve } = require("path");
-const { Console } = require("console");
-const { validateLinks } = require("./options");
-const { statsLink } = require("./statsLink");
-const { optionStatsValidate } = require("./optionStatsValidate");
-const { initDir, initFile } = require("./route");
-const route = path.resolve();
+const { validateLinks } = require("./src/options");
+const { statsLink } = require("./src/options");
+const { optionStatsValidate } = require("./src/options");
+const { initDir, initFile } = require("./src/route");
 
 function mdLinks(route, options) {
   return new Promise((resolve, reject) => {
