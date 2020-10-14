@@ -1,4 +1,37 @@
 {
-  "name": "md-links",
-  "version": "0.1.0"
+  "name": "@dayanamm/md-links",
+  "version": "0.1.0",
+  "description": "Get links of file markdown",
+  "main": "./src/index.js",
+  "author": "Dayana Martínez",
+  "repository": {
+    "url": "https://github.com/Dayanamm/MD-Links"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "bin": {
+    "md-links": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "jest --verbose --coverage"
+  },
+  "preferGlobal": true,
+  "keywords": [
+    "javascript",
+    "markdown",
+    "node.js",
+    "promises",
+    "laboratoria",
+    "md-links"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "marked": "^0.7.0",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
 }

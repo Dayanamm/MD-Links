@@ -1,0 +1,1 @@
+Texto prueba con extensión txt para verificar la lectura de directorios.
