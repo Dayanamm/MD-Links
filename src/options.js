@@ -2,14 +2,13 @@ const fetch = require("node-fetch");
 const { rejects } = require("assert");
 const { resolve } = require("path");
 const { Console } = require("console");
-const { initFile } = require("./src/route");
+const { initFile } = require("./src/route.js");
 
 function validateLinks(route) {
   return new Promise(function (resolve, reject) {
     initFile(route)
-      .then((link) => {
-        let statusLinks = link.map((elem) => {
-          return fetch(elem.URL)
+      .then(function (link) {
+          let statusLinks = link.map((elem) => fetch(elem.URL)
             .then(function (res) {
               if (res.status <= 299) {
                 elem.status = "Ok";
@@ -21,13 +20,12 @@ function validateLinks(route) {
             })
             .catch((err) => {
               elem.status = `Error en el servidor => ${err}`;
-            });
-        });
-        Promise.all(statusLinks).then(() => {
-          resolve(link);
-          console.log(resolve);
-        });
-      })
+            }));
+          Promise.all(statusLinks).then(() => {
+            resolve(link);
+            console.log(resolve);
+          });
+        })
       .catch((err) => {
         reject(err);
       });
@@ -37,14 +35,16 @@ function validateLinks(route) {
 function statsLink(route) {
   return new Promise(function (resolve, reject) {
     initFile(route)
-      .then((link) => {
-        const linksUnique = new Set(link.map((elem) => elem.URL));
-        resolve({
-          File: path.resolve(route),
-          Unique: linksUnique.size,
-          Total: link.length,
-        });
-      })
+      .then(function (link) {
+          const linksUnique = new Set(link.map((elem) => {
+            return elem.URL;
+          }));
+          resolve({
+            File: path.resolve(route),
+            Unique: linksUnique.size,
+            Total: link.length,
+          });
+        })
       .catch((err) => {
         reject(err);
       });
@@ -54,21 +54,23 @@ function statsLink(route) {
 function optionStatsValidate(route) {
   return new Promise((resolve, reject) => {
     validateLinks(route)
-      .then((links) => {
-        const linksUnique = new Set(links.map((elem) => elem.URL));
-        let content = 0;
-        links.forEach((elem) => {
-          if (elem.status !== "OK") {
-            content += 1;
-          }
-        });
-        resolve({
-          File: rutaRelativa(route),
-          Unique: linksUnique.size,
-          Total: links.length,
-          Broken: content,
-        });
-      })
+      .then(function (links) {
+          const linksUnique = new Set(links.map((elem) => {
+            return elem.URL;
+          }));
+          let content = 0;
+          links.forEach((elem) => {
+            if (elem.status !== "OK") {
+              content += 1;
+            }
+          });
+          resolve({
+            File: rutaRelativa(route),
+            Unique: linksUnique.size,
+            Total: links.length,
+            Broken: content,
+          });
+        })
       .catch((err) => {
         reject(err);
       });

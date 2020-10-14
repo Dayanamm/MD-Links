@@ -1,31 +1,37 @@
 {
-  "name": "md-links",
+  "name": "@dayanamm/md-links",
   "version": "0.1.0",
-  "dependencies": {
-    "marked": "^1.2.0",
-    "node-fetch": "^2.6.1"
-  },
-  "description": "* [1. Preámbulo](#1-preámbulo)\r * [2. Resumen del proyecto](#2-resumen-del-proyecto)\r * [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)\r * [4. Consideraciones generales](#4-consideraciones-generales)\r * [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)\r * [6. Entregables](#6-entregables)\r * [7. Hacker edition](#7-hacker-edition)\r * [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)\r * [9. Checklist](#9-checklist)",
-  "main": "indexn.js",
-  "directories": {
-    "test": "test"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Get links of file markdown",
+  "main": "./src/index.js",
+  "author": "Dayana Martínez",
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Dayanamm/MD-Links.git"
+    "url": "https://github.com/Dayanamm/MD-Links"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Dayanamm/MD-Links/issues"
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "bin": {
-    "hello": "./bin/cli.js"
+    "md-links": "./bin/cli.js"
   },
-  "homepage": "https://github.com/Dayanamm/MD-Links#readme",
-  "keywords": []
+  "scripts": {
+    "test": "jest --verbose --coverage"
+  },
+  "preferGlobal": true,
+  "keywords": [
+    "javascript",
+    "markdown",
+    "node.js",
+    "promises",
+    "laboratoria",
+    "md-links"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "marked": "^0.7.0",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
   }
+}
