@@ -1,6 +1,4 @@
-const { validateLinks } = require("./options.js");
-const { statsLink } = require("./options.js");
-const { optionStatsValidate } = require("./options.js");
+const { validateLinks, statsLink, optionStatsValidate } = require("./options.js");
 const { initDir, initFile } = require("./route.js");
 
 function mdLinks(route, options) {

@@ -25,9 +25,9 @@ mdLinks(route, options).then(function (res) {
     if (options.validate && !options.stats) {
       let linksValidate = res.map(function (elemento) {
         console.log("entrada")
-          return chalk.black.bgGray(elemento.File) + " " + chalk.cyan(elemento.URL) + " " + chalk.white.bgRed(elemento.status) + " " + chalk.black.bgYellow(elemento.statusNumber) + " " + chalk.whiteBright(elemento.Text);
+          return chalk.black.bgWhiteBright(elemento.file) + " " + chalk.cyan(elemento.href) + " " + chalk.white.red(elemento.status) + " " + chalk.black.yellow(elemento.statusNumber) + " " + chalk.blackBright(elemento.text);
         });
-      return console.log(linksValidate.join("\n "));
+      console.log(linksValidate.join("\n "));
 
     } else if (options.stats && !options.validate) {
       for (const i in res) {
@@ -46,9 +46,9 @@ mdLinks(route, options).then(function (res) {
       console.log(chalk.greenBright('Ingresa una opcion valida por favor'));
 
     } else if (options) {
-      let links = res.map((elemento) => chalk.black.bgGray(elemento.File) + " " + chalk.cyanBright(elemento.URL) + " " + chalk.whiteBright(elemento.Text));
-      console.log("cuarta entrada")
-      return console.log(links.join("\n "));
+      let links = res.map((elemento) => chalk.black.bgWhiteBright(elemento.file) + " " + chalk.cyanBright(elemento.href) + " " + chalk.blackBright(elemento.text));
+      console.log(res)
+      console.log(links.join("\n "));
 
     }
   }).catch(err => console.error(`Ingresa opciones validas ${err}`));
