@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 const { rejects } = require("assert");
 const { resolve } = require("path");
 const { Console } = require("console");
-const { initFile } = require("./src/route.js");
+const { initFile } = require("./route.js");
 
 function validateLinks(route) {
   return new Promise(function (resolve, reject) {

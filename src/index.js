@@ -1,7 +1,7 @@
-const { validateLinks } = require("./src/options.js");
-const { statsLink } = require("./src/options.js");
-const { optionStatsValidate } = require("./src/options.js");
-const { initDir, initFile } = require("./src/route.js");
+const { validateLinks } = require("./options.js");
+const { statsLink } = require("./options.js");
+const { optionStatsValidate } = require("./options.js");
+const { initDir, initFile } = require("./route.js");
 
 function mdLinks(route, options) {
   return new Promise((resolve, reject) => {
