@@ -20,8 +20,8 @@ process.argv.forEach(function (element) {
     }
   })
 
-mdLinks(route, options).then(function (res) {
-
+mdLinks(route, options)
+.then(function (res) {
     if (options.validate && !options.stats) {
       let linksValidate = res.map(function (elemento) {
         console.log("entrada")
@@ -32,8 +32,10 @@ mdLinks(route, options).then(function (res) {
     } else if (options.stats && !options.validate) {
       for (const i in res) {
         console.log("Primera entrada")
-        console.log(chalk.bgGray(`Archivo: ${res[i].File}`) + " " + chalk.cyanBright(`Links Unicos: ${res[i].Unique}`) + " " + chalk.redBright(`Links Totales: ${res[i].Total}`));
+        console.log(i);
+        return chalk.bgGray(`Archivo: ${res[i].File}`) + " " + chalk.cyanBright(`Links Unicos: ${res[i].Unique}`) + " " + chalk.redBright(`Links Totales: ${res[i].Total}`);
       };
+      console.log(i);
 
     } else if (options.validate && options.stats) {
       for (const i in res) {
