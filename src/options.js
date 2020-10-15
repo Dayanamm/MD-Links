@@ -65,7 +65,7 @@ function optionStatsValidate(route) {
             }
           });
           resolve({
-            File: rutaRelativa(route),
+            File: path.resolve(route),
             Unique: linksUnique.size,
             Total: links.length,
             Broken: content,
